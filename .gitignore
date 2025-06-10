@@ -1,0 +1,21 @@
+no 8.3                                                                                        .gitignore                                                                                        Modified
+# Dossiers à ignorer
+.vs/
+*.db
+*.suo
+*.sqlite
+*.user
+
+# Fichiers générés
+*.exe
+*.obj
+*.pdb
+*.idb*
+
+
+
+
+
+
+
+
