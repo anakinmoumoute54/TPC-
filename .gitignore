@@ -1,3 +1,23 @@
+# Visual Studio
+
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Fichiers de compilation
+x64/
+Debug/
+Release/
+*.obj
+*.exe
+*.dll
+*.pdb
+
+# Temp
+*.log
+*.vsidx
 no 8.3                                                                                        .gitignore                                                                                        Modified
 # Dossiers à ignorer
 .vs/

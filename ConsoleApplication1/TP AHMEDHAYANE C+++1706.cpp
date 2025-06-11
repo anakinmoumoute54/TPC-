@@ -28,7 +28,7 @@ public:
 };
 
 class JeuVideo {
-private : 
+private:
 	std::string titre;
 	std::string genre;
 	double prix;
@@ -36,7 +36,7 @@ private :
 
 public:
 
-class Console {
-	std::string nomConsole;
-	double prix;
-	int stock;
+	class Console {
+		std::string nomConsole;
+		double prix;
+		int stock;
