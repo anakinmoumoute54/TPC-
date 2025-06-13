@@ -86,13 +86,13 @@ private:
 
 public:
 	Console(std::string nomConsole, double prix, int stock) { // constructeur cons
-		 setPrix(prix);
-		 setStock(stock);
+		setPrix(prix);
+		setStock(stock);
 	}
 
-	std::string getNomConsole() const {return nomConsole;}
-	double getPrix() const {return prix;}
-	int getStock() const {return stock;}
+	std::string getNomConsole() const { return nomConsole; }
+	double getPrix() const { return prix; }
+	int getStock() const { return stock; }
 
 	//mutateurs
 	void setPrix(double nouveauPrix) {
@@ -119,18 +119,20 @@ public:
 			<< "Prix :" << prix << "€"
 			<< "Stock :" << stock << std::endl;
 	}
+};
 
 //classe abstraite produit
-class Produit {
-protected:
-	std::string nomProduit;
-	double prixBase;
+	class Produit {
+	protected:
+		std::string nomProduit;
+		double prixBase;
 
-// constructeur
-	Produit(std::string nom, double prix) {
-		nomProduit = nom;
-		prixBase = prix;
-	}
+		// constructeur
+		Produit(std::string nom, double prix) {
+			nomProduit = nom;
+			prixBase = prix;
+		}
+
 
 //accesseur
 
@@ -138,6 +140,9 @@ public :
 	std::string getNomproduit() const { return nomProduit; };
     double getPrixBase() const {return prixBase;};
 
-	virtual void afficherDetailsProduits() const = 0;
+	virtual void afficherDetailsProduit() const = 0; // metho virtuel
+	virtual double calculerPrixTTC() const = 0;
+	virtual void setStock(int nouveauStock) = 0;
 
-
+	virtual ~Produit() = default;
+};
