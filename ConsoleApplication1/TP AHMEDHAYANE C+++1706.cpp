@@ -35,7 +35,7 @@ private:
 	double prix;
 	int stock;
 
-public:
+class JeuVideo : public Produit {
 	JeuVideo(std::string titre, std::string genre, double prix, int stock) { // constructeur jeuvideo
 		 setPrix(prix);
 		 setStock(stock);
