@@ -27,6 +27,7 @@ public:
 		: std::invalid_argument("Erreur : " + message) {}
 };
 
+// classe jeu video 
 class JeuVideo {
 private:
 	std::string titre;
@@ -35,8 +36,89 @@ private:
 	int stock;
 
 public:
+	JeuVideo(std::string titre, std::string genre, double prix, int stock) { // constructeur jeuvideo
+		 setPrix(prix);
+		 setStock(stock);
 
-	class Console {
-		std::string nomConsole;
-		double prix;
-		int stock;
+	}
+
+	//accesseur
+	std::string getTitre() const { return titre; };
+	std::string getGenre() const {return genre;}
+	double getPrix() const {return prix;}
+	int getStock() const {return stock;}
+
+
+	//mutateurs
+	void setPrix(double nouveauPrix) {
+		if (nouveauPrix < 0) {
+			std::cout << "Erreur, le prix est negatif !" << std::endl;
+		}
+		else {
+			prix = nouveauPrix;
+		}
+	}
+
+	void setStock(int nouveauStock) {
+		if (nouveauStock < 0) {
+			std::cout << " Erreur, le produit est en rupture de stock " << std::endl;
+		}
+		else {
+			stock = nouveauStock;
+		}
+	}
+
+	// affichage des infos sur le JV
+	void afficherInfos() const {
+		std::cout << "Titre : " << titre
+			<< "Genre : " << genre
+			<< "Prix :  " << prix << "€"
+			<< "Stock :" << stock << std::endl;
+	}
+};
+
+// classe console
+class Console {
+private:
+	std::string nomConsole;
+	double prix;
+	int stock;
+
+public:
+	Console(std::string nomConsole, double prix, int stock) { // constructeur cons
+		 setPrix(prix);
+		 setStock(stock);
+	}
+
+	std::string getNomConsole() const {return nomConsole;}
+	double getPrix() const {return prix;}
+	int getStock() const {return stock;}
+
+	//mutateurs
+	void setPrix(double nouveauPrix) {
+		if (nouveauPrix < 0) {
+			std::cout << "Erreur, le prix est negatif !" << std::endl;
+		}
+		else {
+			prix = nouveauPrix;
+		}
+	}
+
+	void setStock(int nouveauStock) {
+		if (nouveauStock < 0) {
+			std::cout << " Erreur, le produit est en rupture de stock " << std::endl;
+		}
+		else {
+			stock = nouveauStock;
+		}
+	}
+	//  affichage des infos sur la console
+
+	void afficherInfos() const {
+		std::cout << "Console :" << nomConsole
+			<< "Prix :" << prix << "€"
+			<< "Stock :" << stock << std::endl;
+	}
+};
+
+
