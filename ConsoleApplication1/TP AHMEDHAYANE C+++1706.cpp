@@ -119,6 +119,25 @@ public:
 			<< "Prix :" << prix << "€"
 			<< "Stock :" << stock << std::endl;
 	}
-};
+
+//classe abstraite produit
+class Produit {
+protected:
+	std::string nomProduit;
+	double prixBase;
+
+// constructeur
+	Produit(std::string nom, double prix) {
+		nomProduit = nom;
+		prixBase = prix;
+	}
+
+//accesseur
+
+public :
+	std::string getNomproduit() const { return nomProduit; };
+    double getPrixBase() const {return prixBase;};
+
+	virtual void afficherDetailsProduits() const = 0;
 
 
