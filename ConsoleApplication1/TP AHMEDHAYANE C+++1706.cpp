@@ -10,15 +10,11 @@ private:
 
 public:
 	ErreurStockInsuffisant(const std::string& nomProduit, int qte)
-		: std::runtime_error("Plus de produit en stock pour bientot :" + nomProduit), produit(nomProduit), quantite(qte) {}
+		: std::runtime_error("Plus de produit en stock à bientot :" + nomProduit), produit(nomProduit), quantite(qte) {}
 
-	std::string getProduit() const {
-		return produit;
-	}
+	std::string getProduit() const {return produit;}
+	int getQuantite() const {return quantite;}
 
-	int getQuantite() const {
-		return quantite;
-	}
 };
 // Creation de la classe d'exception pour argument invalide
 class ErreurArgumentInvalide : public std::invalid_argument {
@@ -27,23 +23,48 @@ public:
 		: std::invalid_argument("Erreur : " + message) {}
 };
 
+//classe abstraite produit
+class Produit {
+protected:
+	std::string nomProduit;
+	double prixBase;
+
+// constructeur
+public:                  
+	Produit(std::string nom, double prix) 
+		: nomProduit(nom), prixBase(prix) {
+	}
+
+	std::string getNomproduit() const { return nomProduit; }; //accesseur
+	double getPrixBase() const { return prixBase; };
+
+	virtual void afficherDetailsProduit() const = 0; // metho virtuel
+	virtual double calculerPrixTTC() const = 0;
+	virtual void setStock(int nouveauStock) = 0;
+
+	virtual ~Produit() = default;
+};
+
+
 // classe jeu video 
-class JeuVideo {
+class JeuVideo : public Produit {
 private:
 	std::string titre;
 	std::string genre;
 	double prix;
 	int stock;
 
-class JeuVideo : public Produit {
-	JeuVideo(std::string titre, std::string genre, double prix, int stock) { // constructeur jeuvideo
+public : 
+	  JeuVideo(std::string titre, std::string genre, double prix, int stock)// constructeur jeuvideo
+		  : titre(titre), genre(genre)
+	  {
 		 setPrix(prix);
 		 setStock(stock);
 
-	}
+	  }
 
 	//accesseur
-	std::string getTitre() const { return titre; };
+	std::string getTitre() const { return titre; }
 	std::string getGenre() const {return genre;}
 	double getPrix() const {return prix;}
 	int getStock() const {return stock;}
@@ -53,8 +74,7 @@ class JeuVideo : public Produit {
 	void setPrix(double nouveauPrix) {
 		if (nouveauPrix < 0) {
 			std::cout << "Erreur, le prix est negatif !" << std::endl;
-		}
-		else {
+		} else {
 			prix = nouveauPrix;
 		}
 	}
@@ -62,23 +82,24 @@ class JeuVideo : public Produit {
 	void setStock(int nouveauStock) {
 		if (nouveauStock < 0) {
 			std::cout << " Erreur, le produit est en rupture de stock " << std::endl;
-		}
-		else {
 			stock = nouveauStock;
 		}
-	}
-
+	};
 	// affichage des infos sur le JV
 	void afficherInfos() const {
 		std::cout << "Titre : " << titre
-			<< "Genre : " << genre
-			<< "Prix :  " << prix << "€"
-			<< "Stock :" << stock << std::endl;
+			      << "Genre : " << genre
+			      << "Prix :  " << prix << "€"
+			      << "Stock :" << stock << std::endl;
+	}
+
+	double calculerPrixTTC() const override {
+		return prix * 1.2;
 	}
 };
 
 // classe console
-class Console {
+class Console : public Produit {
 private:
 	std::string nomConsole;
 	double prix;
@@ -98,17 +119,15 @@ public:
 	void setPrix(double nouveauPrix) {
 		if (nouveauPrix < 0) {
 			std::cout << "Erreur, le prix est negatif !" << std::endl;
-		}
-		else {
-			prix = nouveauPrix;
+		}else {
+		   prix = nouveauPrix;
 		}
 	}
 
 	void setStock(int nouveauStock) {
 		if (nouveauStock < 0) {
 			std::cout << " Erreur, le produit est en rupture de stock " << std::endl;
-		}
-		else {
+		} else {
 			stock = nouveauStock;
 		}
 	}
@@ -116,33 +135,11 @@ public:
 
 	void afficherInfos() const {
 		std::cout << "Console :" << nomConsole
-			<< "Prix :" << prix << "€"
-			<< "Stock :" << stock << std::endl;
+			      << "Prix :" << prix << "€"
+			      << "Stock :" << stock << std::endl;
 	}
 };
 
-//classe abstraite produit
-	class Produit {
-	protected:
-		std::string nomProduit;
-		double prixBase;
-
-		// constructeur
-		Produit(std::string nom, double prix) {
-			nomProduit = nom;
-			prixBase = prix;
-		}
 
 
-//accesseur
 
-public :
-	std::string getNomproduit() const { return nomProduit; };
-    double getPrixBase() const {return prixBase;};
-
-	virtual void afficherDetailsProduit() const = 0; // metho virtuel
-	virtual double calculerPrixTTC() const = 0;
-	virtual void setStock(int nouveauStock) = 0;
-
-	virtual ~Produit() = default;
-};
