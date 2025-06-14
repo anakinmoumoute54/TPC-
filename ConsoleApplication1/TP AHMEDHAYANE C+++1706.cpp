@@ -68,18 +68,19 @@ public :
 	//mutateurs
 	void setPrix(double nouveauPrix) {
 		if (nouveauPrix < 0) {
-			std::cout << "Erreur, le prix est negatif !" << std::endl;
-		} else {
-			prix = nouveauPrix;
+			throw ErreurArgumentInvalide("Erreur, le prix est negatif !");
 		}
+		prixBase = nouveauPrix;
 	}
 
-	void setStock(int nouveauStock) {
+
+	void setStock(int nouveauStock) override {
 		if (nouveauStock < 0) {
-			std::cout << " Erreur, le produit est en rupture de stock " << std::endl;
-			stock = nouveauStock;
+			throw ErreurArgumentInvalide("Erreur, le produit est en rupture de stock");
 		}
-	};
+		stock = nouveauStock;
+	}
+
 	// affichage des infos sur le JV
 	void afficherInfos() const {
 		std::cout << "Titre : " << titre
@@ -113,15 +114,15 @@ public:
 	//mutateurs
 	void setPrix(double nouveauPrix) {
 		if (nouveauPrix < 0) {
-			std::cout << "Erreur, le prix est negatif !" << std::endl;
-		}else {
+			throw ErreurArgumentInvalide("le prix est negatif !");
+		} else {
 		   prix = nouveauPrix;
 		}
 	}
 
 	void setStock(int nouveauStock) {
 		if (nouveauStock < 0) {
-			std::cout << " Erreur, le produit est en rupture de stock " << std::endl;
+			throw ErreurArgumentInvalide("le produit est en rupture de stock");
 		} else {
 			stock = nouveauStock;
 		}
