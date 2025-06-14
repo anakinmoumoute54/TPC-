@@ -49,24 +49,19 @@ public:
 // classe jeu video 
 class JeuVideo : public Produit {
 private:
-	std::string titre;
 	std::string genre;
-	double prix;
 	int stock;
 
 public : 
-	  JeuVideo(std::string titre, std::string genre, double prix, int stock)// constructeur jeuvideo
-		  : titre(titre), genre(genre)
-	  {
-		 setPrix(prix);
+	JeuVideo(std::string titre, std::string genre, double prix, int stock)
+		: Produit(titre, prix), genre(genre) {
+
 		 setStock(stock);
 
 	  }
 
 	//accesseur
-	std::string getTitre() const { return titre; }
 	std::string getGenre() const {return genre;}
-	double getPrix() const {return prix;}
 	int getStock() const {return stock;}
 
 
@@ -89,7 +84,8 @@ public :
 	void afficherInfos() const {
 		std::cout << "Titre : " << titre
 			      << "Genre : " << genre
-			      << "Prix :  " << prix << "€"
+			      << "Prix :  " << prixBase << "€"
+	       		  << "Prix TTC : " << calculerPrixTTC() << "€"
 			      << "Stock :" << stock << std::endl;
 	}
 
@@ -102,7 +98,6 @@ public :
 class Console : public Produit {
 private:
 	std::string nomConsole;
-	double prix;
 	int stock;
 
 public:
