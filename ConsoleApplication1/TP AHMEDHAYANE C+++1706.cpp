@@ -68,7 +68,7 @@ public :
 	//mutateurs
 	void setPrix(double nouveauPrix) {
 		if (nouveauPrix < 0) {
-			throw ErreurArgumentInvalide("Erreur, le prix est negatif !");
+			std::cout << "Erreur, le prix est negatif !" << std::endl;
 		}
 		prixBase = nouveauPrix;
 	}
@@ -76,14 +76,14 @@ public :
 
 	void setStock(int nouveauStock) override {
 		if (nouveauStock < 0) {
-			throw ErreurArgumentInvalide("Erreur, le produit est en rupture de stock");
+			std::cout << "Erreur, le produit est en rupture de stock" << std::endl;
 		}
 		stock = nouveauStock;
 	}
 
 	// affichage des infos sur le JV
 	void afficherInfos() const {
-		std::cout << "Titre : " << titre
+		std::cout << "Titre : " << nomProduit
 			      << "Genre : " << genre
 			      << "Prix :  " << prixBase << "€"
 	       		  << "Prix TTC : " << calculerPrixTTC() << "€"
@@ -91,7 +91,7 @@ public :
 	}
 
 	double calculerPrixTTC() const override {
-		return prix * 1.2;
+		return prixBase * 1.2;
 	}
 };
 
